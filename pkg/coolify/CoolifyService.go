@@ -35,7 +35,7 @@ func NewCoolifyService(api_url string, token string) *CoolifyService {
 	}
 }
 
-func (svc *CoolifyService) Apply(new_state *State, state_file string) {
+func (svc *CoolifyService) Apply(new_state *State) {
 	updated_state, err := svc.private_keys_service.SaveState(svc.current_state, new_state, GetPrivateKeysFromState)
 	if err != nil {
 		fmt.Printf("Error saving private keys state: %v", err)
@@ -45,7 +45,7 @@ func (svc *CoolifyService) Apply(new_state *State, state_file string) {
 	svc.SaveState(state_file)
 }
 
-func (svc *CoolifyService) Destroy(state_file string) error {
+func (svc *CoolifyService) Destroy() error {
 	err := svc.private_keys_service.DestroyState(svc.current_state, GetPrivateKeysFromState)
 	if err != nil {
 		return err
