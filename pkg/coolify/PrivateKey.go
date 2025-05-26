@@ -51,3 +51,19 @@ func (k *PrivateKey) BuildNewFromCurrentState(state *State) Resource {
 func GetPrivateKeysFromState(state *State) []*PrivateKey {
 	return state.PrivateKeys
 }
+
+func GetServersFromState(state *State) []*Server {
+	return state.Servers
+}
+
+func GetProjectsFromState(state *State) []*Project {
+	return state.Projects
+}
+
+func GetApplicationsFromState(state *State) []*Application {
+	return state.Applications
+}
+
+func GetDatabasesFromState(state *State) []*Database {
+	return state.Databases
+}
