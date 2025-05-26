@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+const state_file = "coolify.state.json"
+
 type CoolifyService struct {
 	current_state        *State
 	servers_service      *ResourceService[*Server]
@@ -16,8 +18,13 @@ type CoolifyService struct {
 	databases_service    *ResourceService[*Database]
 }
 
-func NewCoolifyService(api_url string, token string, current_state *State) *CoolifyService {
+func NewCoolifyService(api_url string, token string) *CoolifyService {
 	request := NewCoolifyRequestService(api_url, token)
+	current_state, err := ReadState(state_file)
+	if err != nil {
+		panic(err)
+	}
+
 	return &CoolifyService{
 		current_state:        current_state,
 		servers_service:      NewResourceService[*Server]("Server", "/api/v1/servers", "/api/v1/servers", request),
