@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -43,8 +44,13 @@ func (svc *CoolifyRequestService) requestWithData(method string, endpoint string
 		return nil, err
 	}
 	defer resp.Body.Close()
-
 	resBody, _ := io.ReadAll(resp.Body)
+
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		log.Printf("Received unexpected response: [%d]: %v\n", resp.StatusCode, resBody)
+		return nil, err
+	}
+
 	return resBody, nil
 }
 
