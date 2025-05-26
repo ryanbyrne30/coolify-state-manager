@@ -47,7 +47,7 @@ func (svc *CoolifyRequestService) requestWithData(method string, endpoint string
 	resBody, _ := io.ReadAll(resp.Body)
 
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		log.Printf("Received unexpected response: [%d]: %v\n", resp.StatusCode, resBody)
+		log.Printf("Received unexpected response: [%d]: %s\n", resp.StatusCode, resBody)
 		return nil, err
 	}
 
