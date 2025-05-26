@@ -68,3 +68,11 @@ func hashValues(m map[string]interface{}, attrs []string) {
 		}
 	}
 }
+
+func MergeStates(s1 *State, s2 *State) {
+	s1.PrivateKeys = append(s1.PrivateKeys, s2.PrivateKeys...)
+	s1.Servers = append(s1.Servers, s2.Servers...)
+	s1.Projects = append(s1.Projects, s2.Projects...)
+	s1.Applications = append(s1.Applications, s2.Applications...)
+	s1.Databases = append(s1.Databases, s2.Databases...)
+}
