@@ -92,7 +92,7 @@ func (s *State) projectUUID(project_id string) string {
 }
 
 func (s *State) privateKeyUUID(private_key_id string) string {
-	for _, r := range s.Servers {
+	for _, r := range s.PrivateKeys {
 		if r.Id == private_key_id {
 			return r.UUID
 		}
