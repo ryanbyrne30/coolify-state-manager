@@ -19,7 +19,7 @@ type Database struct {
 }
 
 func (db *Database) GetUUID() string {
-	return db.Id
+	return db.UUID
 }
 
 func (db *Database) SetUUID(uuid string) {
